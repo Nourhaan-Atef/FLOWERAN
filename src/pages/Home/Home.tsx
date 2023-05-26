@@ -6,7 +6,6 @@ const Home = () => {
       <section className="grid md:grid-cols-3 items-center mt-5 gap-5 pb-10">
         <div className=" font-Righteous md:order-1 order-2">
           <p className="py-5 font-Righteous text-3xl uppercase font-extrabold">
-            {" "}
             Welcome to our store ❤
           </p>
           <p className="text-2xl">Send fresh Flowers Online on the same day.</p>
@@ -19,7 +18,7 @@ const Home = () => {
         <img
           src={home}
           alt="Home Img"
-          className="md:col-span-2 md:order-2 order-1 rounded-2xl w-full md:h-[85vh]"
+          className="md:col-span-2 md:order-2 order-1 rounded-2xl w-full md:h-[82vh]"
         />
       </section>
     </>

@@ -3,5 +3,7 @@
 @tailwind utilities;
 
 @layer components {
-  
+  .active{
+    text-decoration: underline;
+  }
 }
