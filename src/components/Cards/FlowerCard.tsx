@@ -1,6 +1,8 @@
 import { IFlowers } from "../../models/flowers";
-import likeIcon from "../../assets/Icons/heart.svg";
+import LikeIcon from "../../assets/Icons/heart.svg";
 import CommentIcon from "../../assets/Icons/comment.svg";
+import OpenIcon from "../../assets/Icons/open.svg";
+
 interface Props {
   flowersList: IFlowers[];
 }
@@ -13,9 +15,10 @@ const FlowerCard: React.FC<Props> = ({ flowersList }) => {
             key={flowerCardItem.index}
             className="flex flex-col  border-2 border-red rounded-3xl py-5 px-5"
           >
-            <div className="flex justify-end items-end gap-3 cursor-pointer">
+            <div className="flex justify-end items-center gap-3 cursor-pointer">
+              <img src={OpenIcon} alt="Open Icon" className="w-5" />
+              <img src={LikeIcon} alt="Like Icon" className="w-5" />
               <img src={CommentIcon} alt="Comment Icon" className="w-5" />
-              <img src={likeIcon} alt="Like Icon" className="w-5" />
             </div>
             {/* <img src={flowerCardItem.flower_picture} alt="Flower Img" /> */}
             <p className="text-center font-Righteous text-xl pb-5">
