@@ -7,6 +7,9 @@ module.exports = {
         Righteous: "Righteous",
         Skranji: "Skranji",
       },
+      colors: {
+        red: "rgb(206, 52, 75)",
+      },
     },
   },
   plugins: [],

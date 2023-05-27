@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 @layer components {
-  .active{
+  .link.active{
     text-decoration: underline;
+    color: rgb(206, 52, 75);
   }
 }
