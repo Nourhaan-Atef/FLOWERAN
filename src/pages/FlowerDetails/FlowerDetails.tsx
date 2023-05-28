@@ -18,8 +18,8 @@ const FlowerDetails = () => {
           Back To Flowers
         </button>
       </Link>
-      <section className="grid grid-cols-2 items-center mt-5">
-        <div>
+      <section className="grid md:grid-cols-2 gap-5 items-center mt-5">
+        <div className="md:order-1 order-2">
           <p className="text-center font-Righteous text-xl pb-5">
             <span className="text-2xl text-red font-Skranji">Name :</span>{" "}
             {Flower?.flower_name}
@@ -31,7 +31,7 @@ const FlowerDetails = () => {
             {Flower?.flower_description}
           </p>
         </div>
-        <div className="flex items-center justify-center ">
+        <div className="flex items-center justify-center md:order-2 order-1">
           <img
             src={flower}
             alt="Flower Img"
