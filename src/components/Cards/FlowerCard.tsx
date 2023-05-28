@@ -1,11 +1,17 @@
 import { IFlowers } from "../../models/flowers";
 import LikeIcon from "../../assets/Icons/heart.svg";
+import LoveIcon from "../../assets/Icons/Love.svg";
 import CommentIcon from "../../assets/Icons/comment.svg";
 import OpenIcon from "../../assets/Icons/open.svg";
 import flower from "../../assets/Images/flower.jpg";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getCertainFlower } from "../../middlewares/GetCertainFlower";
+import {
+  FlowersState,
+  addToFavorite,
+  removeFromFavorite,
+} from "../../slices/flowers";
 
 interface Props {
   flowersList: IFlowers[];
@@ -13,6 +19,17 @@ interface Props {
 const FlowerCard: React.FC<Props> = ({ flowersList }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { FavFlowers } = useAppSelector(FlowersState);
+  const HandleFavoriteFlowers = (item: IFlowers) => {
+    let FavFlowersIds = FavFlowers.map((favFlower) => {
+      return favFlower.index;
+    });
+    if (!FavFlowersIds.includes(item.index)) {
+      dispatch(addToFavorite({ FavFlower: item }));
+    } else {
+      dispatch(removeFromFavorite({ FavFlower: item }));
+    }
+  };
   return (
     <>
       {flowersList.map((flowerCardItem) => {
@@ -33,10 +50,21 @@ const FlowerCard: React.FC<Props> = ({ flowersList }) => {
                         navigate(`/Flower/${flowerCardItem.index}/details`);
                       }
                     }
-                  );  
+                  );
                 }}
               />
-              <img src={LikeIcon} alt="Like Icon" className="w-5" />
+              <img
+                src={`${
+                  FavFlowers.map((favFlower) => {
+                    return favFlower.index;
+                  }).includes(flowerCardItem.index)
+                    ? LoveIcon
+                    : LikeIcon
+                }`}
+                alt="Like Icon"
+                className="w-5"
+                onClick={() => HandleFavoriteFlowers(flowerCardItem)}
+              />
               <img src={CommentIcon} alt="Comment Icon" className="w-5" />
             </div>
             <div className="py-5">

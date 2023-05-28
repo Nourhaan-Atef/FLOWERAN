@@ -4,6 +4,7 @@ import Home from "../pages/Home/Home";
 import "../styles/index.css";
 import Flowers from "../pages/Flowers/Flowers";
 import FlowerDetails from "../pages/FlowerDetails/FlowerDetails";
+import FavFlowers from "../pages/FavFlowers/FavFlowers";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: "Flower/:id/details",
         element: <FlowerDetails />,
+      },
+      {
+        path: "Favorites",
+        element: <FavFlowers />,
       },
     ],
   },

@@ -27,9 +27,10 @@ const NavBar = () => {
               flowers
             </p>
           </NavLink>
-          <div className="link">
+
+          <NavLink to="Favorites" className="link">
             <img src={heart} alt="Like Iocn" className="w-6" />
-          </div>
+          </NavLink>
           <div className="link">
             <img src={cart} alt="Cart Iocn" className="w-6" />
           </div>
@@ -55,10 +56,15 @@ const NavBar = () => {
               flowers
             </p>
           </NavLink>
+          <NavLink to="Favorites" className="link">
+            <p className="font-Righteous font-semibold text-xl uppercase">
+              favorites
+            </p>
+          </NavLink>
           <div className="flex items-center gap-10">
-            <div className="link">
+            <NavLink to="Favorites" className="link">
               <img src={heart} alt="Like Iocn" className="w-8" />
-            </div>
+            </NavLink>
             <div className="link">
               <img src={cart} alt="Cart Iocn" className="w-8" />
             </div>

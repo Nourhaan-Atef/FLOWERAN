@@ -7,19 +7,32 @@ import { getCertainFlower } from "../middlewares/GetCertainFlower";
 interface FlowerState {
     flowerList: IFlowers[],
     loading: boolean,
-    Flower: IFlowers | undefined
+    Flower: IFlowers | null,
+    FavFlowers: IFlowers[],
+
 }
 
 const initialState: FlowerState = {
     flowerList: [],
     loading: false,
-    Flower: undefined
+    Flower: null,
+    FavFlowers: [],
+}
+interface AddToFavPayload {
+    FavFlower: IFlowers
 }
 
 const flowerSlice = createSlice({
     name: "flower",
     initialState: initialState,
-    reducers: {},
+    reducers: {
+        addToFavorite: (state, action: PayloadAction<AddToFavPayload>) => {
+            state.FavFlowers.push(action.payload.FavFlower)
+        },
+        removeFromFavorite: (state, action: PayloadAction<AddToFavPayload>) => {
+            state.FavFlowers = state.FavFlowers.filter(item => item.index !== action.payload.FavFlower.index)
+        },
+    },
     extraReducers(builder) {
         // Fetching All Flowers
         builder.addCase(fetchAllFlowers.pending, (state) => {
@@ -45,5 +58,6 @@ const flowerSlice = createSlice({
         });
     }
 })
+export const { addToFavorite, removeFromFavorite } = flowerSlice.actions
 export const FlowerReducer = flowerSlice.reducer
 export const FlowersState = (state: RootState) => state.flower
