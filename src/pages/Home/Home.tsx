@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import home from "../../assets/Images/nikita-tikhomirov-dv7cSiHurKM-unsplash.jpg";
+import home from "../../assets/Images/home.jpg";
 const Home = () => {
   return (
     <>
