@@ -12,17 +12,20 @@ import {
   addToFavorite,
   removeFromFavorite,
 } from "../../slices/flowers";
-import { addToCart } from "../../slices/cart";
+import { removeFromCart } from "../../slices/cart";
+// import { toast } from "react-toastify";
 
 interface Props {
-  flowersList: IFlowers[];
+  cartList: IFlowers[];
 }
-const FlowerCard: React.FC<Props> = ({ flowersList }) => {
+const CartItem: React.FC<Props> = ({ cartList }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { FavFlowers } = useAppSelector(FlowersState);
-  const HandleAddToCart = (item: IFlowers) => {
-    dispatch(addToCart({ cartItem: item }));
+
+  const HandleRemoveFromCart = (item: IFlowers) => {
+    dispatch(removeFromCart({ cartItem: item }));
+   
   };
   const HandleFavoriteFlowers = (item: IFlowers) => {
     let FavFlowersIds = FavFlowers.map((favFlower) => {
@@ -36,7 +39,7 @@ const FlowerCard: React.FC<Props> = ({ flowersList }) => {
   };
   return (
     <>
-      {flowersList.map((flowerCardItem) => {
+      {cartList.map((flowerCardItem) => {
         return (
           <div
             key={flowerCardItem.index}
@@ -84,9 +87,9 @@ const FlowerCard: React.FC<Props> = ({ flowersList }) => {
             <div className="flex items-center justify-center">
               <button
                 className="border-2 border-green-700 hover:bg-green-700 hover:text-white transition duration-200 rounded-lg text-center text-lg font-bold font-Skranji px-10 py-px text-green-700"
-                onClick={() => HandleAddToCart(flowerCardItem)}
+                onClick={() => HandleRemoveFromCart(flowerCardItem)}
               >
-                Add To Cart
+                Remove From Cart
               </button>
             </div>
           </div>
@@ -96,4 +99,4 @@ const FlowerCard: React.FC<Props> = ({ flowersList }) => {
   );
 };
 
-export default FlowerCard;
+export default CartItem;

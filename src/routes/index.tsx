@@ -5,6 +5,7 @@ import "../styles/index.css";
 import Flowers from "../pages/Flowers/Flowers";
 import FlowerDetails from "../pages/FlowerDetails/FlowerDetails";
 import FavFlowers from "../pages/FavFlowers/FavFlowers";
+import Cart from "../pages/Cart/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: "Favorites",
         element: <FavFlowers />,
+      },
+      {
+        path: "Cart",
+        element: <Cart />,
       },
     ],
   },
