@@ -45,25 +45,30 @@ const cartSlice = createSlice({
 
         },
         removeFromCart: (state, action: PayloadAction<DeleteFromCartPayload>) => {
-            state.cartList = state.cartList.filter(item => item.index !== action.payload.cartItem.index)
-            state.cartCounter -= 1
+            const RemoveFlower = state.cartList.filter(item => item.index === action.payload.cartItem.index)
+            if (RemoveFlower.length > 0) {
+                state.cartList = state.cartList.filter(item => item.index !== action.payload.cartItem.index)
+                state.cartCounter -= RemoveFlower[0].itemCount
+                console.log(action.payload.cartItem)
+                toast.warn(`${action.payload.cartItem.flower_name} Removed from Cart Successfuly ✅`, {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
 
-            toast.warn(`${action.payload.cartItem.flower_name} Removed from Cart Successfuly ✅`, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            });
         },
         incrementItemCount: (state, action: PayloadAction<IncrementItemCount>) => {
             const { index } = action.payload.cartItem
             const cartItemCount = state.cartList.find(item => {
                 return item.index === index
             })
+            console.log("cartItemCount")
             if (cartItemCount) {
                 cartItemCount.itemCount += 1
                 state.cartCounter += 1;
@@ -74,10 +79,12 @@ const cartSlice = createSlice({
             const cartItemCount = state.cartList.find(item => {
                 return item.index === index
             })
-            if (cartItemCount && cartItemCount.itemCount > 0) {
+            console.log(cartItemCount)
+            if (cartItemCount && cartItemCount.itemCount > 1) {
                 cartItemCount.itemCount -= 1
-                state.cartCounter -= 1;
+                // state.cartCounter -= 1;
             }
+
         },
 
     }

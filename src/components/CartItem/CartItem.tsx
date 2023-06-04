@@ -40,13 +40,9 @@ const CartItem: React.FC<Props> = ({ cartList }) => {
 
   const IncrementItemCount = (cartItem: IFlowers) => {
     dispatch(incrementItemCount({ cartItem }));
-
   };
   const DecrementItemCount = (cartItem: IFlowers) => {
     dispatch(decrementItemCount({ cartItem }));
-    if (cartItem.itemCount === 0) {
-      dispatch(removeFromCart({ cartItem }));
-    }
   };
   return (
     <>
