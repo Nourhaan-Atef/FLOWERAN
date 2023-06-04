@@ -3,7 +3,6 @@ import { IFlowers } from "../models/flowers"
 import { RootState } from "../store";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-// import CartItem from "../components/CartItem/CartItem";
 
 interface CartState {
     cartList: IFlowers[];

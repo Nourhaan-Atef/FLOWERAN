@@ -16,7 +16,6 @@ import {
   decrementItemCount,
   removeFromCart,
 } from "../../slices/cart";
-import { useState } from "react";
 interface Props {
   cartList: IFlowers[];
 }
@@ -38,17 +37,10 @@ const CartItem: React.FC<Props> = ({ cartList }) => {
       dispatch(removeFromFavorite({ FavFlower: item }));
     }
   };
-  // const [buyFlower, setBuyFlower] = useState<IFlowers>({
-  //   flower_description: Flower?.flower_description ?? "",
-  //   flower_name: Flower?.flower_name ?? "",
-  //   index: Flower?.index ?? 0,
-  //   itemCount: 0,
-  //   flower_picture: Flower?.flower_picture ?? "",
-  // });
 
   const IncrementItemCount = (cartItem: IFlowers) => {
     dispatch(incrementItemCount({ cartItem }));
-    
+
   };
   const DecrementItemCount = (cartItem: IFlowers) => {
     dispatch(decrementItemCount({ cartItem }));
