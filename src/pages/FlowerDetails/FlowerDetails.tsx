@@ -1,11 +1,11 @@
-import React from "react";
-import { useAppSelector } from "../../store/hooks";
 import { FlowersState } from "../../slices/flowers";
 import flower from "../../assets/Images/flower.jpg";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../../store/hooks";
 
 const FlowerDetails = () => {
   const { Flower } = useAppSelector(FlowersState);
+
   return (
     <div>
       <header>

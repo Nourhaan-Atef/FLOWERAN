@@ -4,6 +4,8 @@ import { useAppSelector } from "../../store/hooks";
 
 const Cart = () => {
   const { cartList } = useAppSelector(CartsState);
+
+  // console.log(cartList);
   return (
     <div>
       <header>

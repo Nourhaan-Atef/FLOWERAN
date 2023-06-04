@@ -1,7 +1,6 @@
 import { IFlowers } from "../../models/flowers";
 import LikeIcon from "../../assets/Icons/heart.svg";
 import LoveIcon from "../../assets/Icons/Love.svg";
-import CommentIcon from "../../assets/Icons/comment.svg";
 import OpenIcon from "../../assets/Icons/open.svg";
 import flower from "../../assets/Images/flower.jpg";
 import { useNavigate } from "react-router-dom";
@@ -12,17 +11,23 @@ import {
   addToFavorite,
   removeFromFavorite,
 } from "../../slices/flowers";
-import { addToCart } from "../../slices/cart";
+import { CartsState, addToCart } from "../../slices/cart";
 
 interface Props {
   flowersList: IFlowers[];
 }
 const FlowerCard: React.FC<Props> = ({ flowersList }) => {
+  const { cartList } = useAppSelector(CartsState);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { FavFlowers } = useAppSelector(FlowersState);
   const HandleAddToCart = (item: IFlowers) => {
-    dispatch(addToCart({ cartItem: item }));
+    const myFlower = cartList.filter((flower) => {
+      return flower.index === item.index;
+    });
+    if (myFlower.length === 0) {
+      dispatch(addToCart({ cartItem: { ...item, itemCount: 1 } }));
+    }
   };
   const HandleFavoriteFlowers = (item: IFlowers) => {
     let FavFlowersIds = FavFlowers.map((favFlower) => {
@@ -69,7 +74,6 @@ const FlowerCard: React.FC<Props> = ({ flowersList }) => {
                 className="w-5"
                 onClick={() => HandleFavoriteFlowers(flowerCardItem)}
               />
-              <img src={CommentIcon} alt="Comment Icon" className="w-5" />
             </div>
             <div className="py-5">
               <img
@@ -84,9 +88,11 @@ const FlowerCard: React.FC<Props> = ({ flowersList }) => {
             <div className="flex items-center justify-center">
               <button
                 className="border-2 border-green-700 hover:bg-green-700 hover:text-white transition duration-200 rounded-lg text-center text-lg font-bold font-Skranji px-10 py-px text-green-700"
-                onClick={() => HandleAddToCart(flowerCardItem)}
+                onClick={() => {
+                  HandleAddToCart(flowerCardItem);
+                }}
               >
-                Add To Cart
+                Buy Flower
               </button>
             </div>
           </div>
